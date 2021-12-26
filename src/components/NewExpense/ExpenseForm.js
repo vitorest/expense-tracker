@@ -3,8 +3,6 @@ import './ExpenseForm.css'
 
 function ExpenseForm() {
 
-
-
   const [enteredTitle, setEnteredTitle] = useState('')
   const [enteredAmount, setEnteredAmount] = useState('')
   const [enteredDate, setEnteredDate] = useState('')
@@ -13,9 +11,7 @@ function ExpenseForm() {
   //   enteredTitle: '',
   //   enterdAmount: '',
   //   enteredDate: ''
-  // })
-
-
+  // });
 
   const titleChangeHandler = (event) => {
     setEnteredTitle(event.target.value)
@@ -24,7 +20,6 @@ function ExpenseForm() {
     //   ...userInput,
     //   enteredTitle: event.target.value,
     // })
-
 
     //if your state update depends on the previous state, use the method below
     //-------------------------------------------------------------------
@@ -62,7 +57,11 @@ function ExpenseForm() {
       date: new Date(enteredDate)
     }
     console.log(expenseData)
-  }
+    // two way binding uppon form submission
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
+  };
 
   return (
     <form onSubmit={submitHandler}>
@@ -71,6 +70,7 @@ function ExpenseForm() {
           <label>Title</label>
           <input
             type="text"
+            value={enteredTitle}
             onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
@@ -79,6 +79,7 @@ function ExpenseForm() {
             type="number"
             min="0.01"
             step="0.01"
+            value={enteredAmount}
             onChange={amountChangeHandler} />
         </div>
         <div className="new-expense__control">
@@ -87,6 +88,7 @@ function ExpenseForm() {
             type="date"
             min="2019-01-01"
             step="2022-12-31"
+            value={enteredDate}
             onChange={dateChangeHandler} />
         </div>
       </div>
