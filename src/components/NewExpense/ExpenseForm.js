@@ -4,35 +4,68 @@ import './ExpenseForm.css'
 function ExpenseForm() {
 
 
-  // we use state here so that
-  // no matter how often this function might execute again
-  //this state is stored, and survives.
+
   const [enteredTitle, setEnteredTitle] = useState('')
   const [enteredAmount, setEnteredAmount] = useState('')
   const [enteredDate, setEnteredDate] = useState('')
-  // VANILA WAY
-  // document.getElementById('').addEventListener('click', (event) =>{})
 
-  // so, event is an object with lots of props,
-  //to reach the value prop, you need to drill into target,
-  // and inside target tere is a value argument
-  //witch you have to point at too,
-  // this way, you have the value of the event being triggered!
+  // const [userInput, setUserInput] = useState({
+  //   enteredTitle: '',
+  //   enterdAmount: '',
+  //   enteredDate: ''
+  // })
+
 
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    setEnteredTitle(event.target.value)
+
+    // setUserInput({
+    //   ...userInput,
+    //   enteredTitle: event.target.value,
+    // })
+
+
+    //if your state update depends on the previous state, use the method below
+    //-------------------------------------------------------------------
+    // setUserInput((prevState) => {
+    //   return { ...prevState, enteredTitle: event.target.value }
+    // })
   }
 
   const amountChangeHandler = (event) => {
     setEnteredAmount(event.target.value)
+    // setUserInput({
+    //   ...userInput,
+    //   enteredAmount: event.target.value,
+    // })
   }
 
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value)
+    // setUserInput({
+    //   ...userInput,
+    //   enteredDate: event.target.value,
+    // })
   }
+
+  // the browser automatically sends a request when the form is submited
+  // causing the page to reload, thats why we have to disable it here,
+  // so that we're able to handle it using JS
+
+  const submitHandler = (event) => {
+    event.preventDefault()
+
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate)
+    }
+    console.log(expenseData)
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
