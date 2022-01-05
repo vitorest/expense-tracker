@@ -3,7 +3,6 @@ import Expenses from './components/Expenses/Expenses'
 import NewExpense from './components/NewExpense/NewExpense';
 
 
-
 const DUMMY_EXPENSES = [
   {
     id: 'e1',
@@ -28,13 +27,13 @@ const DUMMY_EXPENSES = [
 
 function App() {
 
-  const [expenses, setExpenses] = useState(DUMMY_EXPENSES)
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = (expense) => {
-    setExpenses(prevExpenses => {
-      return [expense, ...prevExpenses]
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
     });
-  }
+  };
 
   // return React.createElement(
   //   'div',
